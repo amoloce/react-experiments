@@ -1,34 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Sidebar from './components/Sidebar'
+import Introduction from './examples/Introduction'
+import PropsExample from './examples/PropsExample'
+import StateExample from './examples/StateExample'
+import ListsExample from './examples/ListsExample'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // State to track which example is currently selected
+  const [selectedExample, setSelectedExample] = useState<string>('introduction')
+
+  // Registry of all available examples
+  // Add new examples here as you create them!
+  const examples: Record<string, { title: string; component: React.ComponentType }> = {
+    'introduction': {
+      title: 'Welcome',
+      component: Introduction
+    },
+    'props': {
+      title: 'Props Example',
+      component: PropsExample
+    },
+    'state': {
+      title: 'State Example',
+      component: StateExample
+    },
+    'lists': {
+      title: 'Lists Example',
+      component: ListsExample
+    }
+  }
+
+  // Get the current example component
+  const CurrentExample = examples[selectedExample].component
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <Sidebar
+        examples={examples}
+        selectedExample={selectedExample}
+        onSelectExample={setSelectedExample}
+      />
+      <div className="content-area">
+        <h1>{examples[selectedExample].title}</h1>
+        <CurrentExample />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
