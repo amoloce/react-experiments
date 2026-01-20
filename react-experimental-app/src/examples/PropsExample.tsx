@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-// Child component that receives props
-// Props are like arguments passed to a function
+// Child component that receives props - Props are like arguments passed to a function
 function Greeting({ name, age }: { name: string; age: number }) {
   return (
     <div className="example-section">
@@ -14,7 +13,6 @@ function Greeting({ name, age }: { name: string; age: number }) {
   )
 }
 
-// Another child component with different props
 function WelcomeMessage({ message, highlight }: { message: string; highlight: boolean }) {
   return (
     <div className="example-section">
@@ -44,16 +42,12 @@ export default function PropsExample() {
         <strong>Props</strong> are how you pass data from a parent component to a child component.
         Think of them like function arguments - you pass values in, and the child component uses them.
       </p>
-
-      {/* Passing state values as props to child components */}
       <Greeting name={userName} age={userAge} />
 
       <WelcomeMessage
         message="Welcome to learning about props!"
         highlight={isHighlighted}
       />
-
-      {/* Controls to modify the props we're passing */}
       <div className="example-section">
         <h3>Try It Out!</h3>
         <p>Change the values below to see how props update the child components:</p>
