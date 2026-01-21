@@ -1,16 +1,9 @@
 import { useState } from 'react'
 
 export default function StateExample() {
-  // State example 1: Number counter
   const [count, setCount] = useState(0)
-
-  // State example 2: Text input
   const [text, setText] = useState('')
-
-  // State example 3: Boolean toggle
   const [isVisible, setIsVisible] = useState(true)
-
-  // State example 4: Object
   const [user, setUser] = useState({ name: 'Guest', points: 0 })
 
   return (

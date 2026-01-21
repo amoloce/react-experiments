@@ -8,18 +8,14 @@ interface TodoItem {
 }
 
 export default function ListsExample() {
-  // State: Array of todo items
   const [todos, setTodos] = useState<TodoItem[]>([
     { id: 1, task: 'Learn about Props', completed: true },
     { id: 2, task: 'Learn about State', completed: true },
     { id: 3, task: 'Learn about Lists', completed: false },
     { id: 4, task: 'Build something cool', completed: false }
   ])
-
-  // State: New todo input
   const [newTodo, setNewTodo] = useState('')
 
-  // Toggle a todo's completed status
   const toggleTodo = (id: number) => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
